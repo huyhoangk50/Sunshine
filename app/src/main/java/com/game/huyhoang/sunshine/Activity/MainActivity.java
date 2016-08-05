@@ -1,5 +1,7 @@
-package com.game.huyhoang.sunshine;
+package com.game.huyhoang.sunshine.Activity;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,13 +10,29 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
+
+import com.game.huyhoang.sunshine.Fragment.MainFragment;
+import com.game.huyhoang.sunshine.R;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    FrameLayout contentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        contentFragment = (FrameLayout) findViewById(R.id.flContent);
+
+        MainFragment mainFragment = new MainFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.flContent, mainFragment);
+        fragmentTransaction.commit();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
