@@ -3,20 +3,28 @@ package com.game.huyhoang.sunshine.Fragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.game.huyhoang.sunshine.AsyncTask.FetchForecastAsyncTask;
 import com.game.huyhoang.sunshine.R;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
  * Created by huyhoang on 05/08/2016.
  */
-public class MainFragment extends Fragment{
+public class ForeCastFragment extends Fragment{
     ArrayList<String> forecastList = new ArrayList<>();
     ListView lvForecast;
     View rootView;
@@ -24,13 +32,16 @@ public class MainFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.main_fragment, container, false);
+        rootView = inflater.inflate(R.layout.forecast_fragment, container, false);
+
 
         initView();
         initListForecast();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.list_item_forecast, R.id.list_item_forecast_text_view, forecastList);
         lvForecast.setAdapter(adapter);
+
+        new FetchForecastAsyncTask().execute();
 
         return rootView;
     }

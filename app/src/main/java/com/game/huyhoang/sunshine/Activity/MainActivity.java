@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import com.game.huyhoang.sunshine.Fragment.MainFragment;
+import com.game.huyhoang.sunshine.Fragment.ForeCastFragment;
 import com.game.huyhoang.sunshine.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
         contentFragment = (FrameLayout) findViewById(R.id.flContent);
 
-        MainFragment mainFragment = new MainFragment();
+        ForeCastFragment foreCastFragment = new ForeCastFragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.flContent, mainFragment);
+        fragmentTransaction.replace(R.id.flContent, foreCastFragment);
         fragmentTransaction.commit();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
